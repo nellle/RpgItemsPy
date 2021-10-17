@@ -47,12 +47,13 @@ class Weapon(Item):
             raise ValueError(f"Damage length must be 2, got {len(args['damage'])}")
         return True
 
+
 class Armor(Item):
     arg_types: ArgsChecker = {"name": [str, "raise ValueError(f'Wrong type for name str or bytes excepted, got {arg}({type(arg)})')"],
                               "defence": [int, 'raise ValueError(f"Defence must be int, got {arg}({type(arg)})")']}
 
     def __init__(self, defence: int, name: typing.AnyStr):
-        if super().check_args({"defence": defence, "defence": name}, self.arg_types):
+        if super().check_args({"defence": defence, "name": name}, self.arg_types):
             self._defence = defence
             self._name = name
 
