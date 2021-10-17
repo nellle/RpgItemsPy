@@ -19,7 +19,7 @@ class Item:
     def check_args(args: typing.Dict[str, typing.Any], arg_types: ArgsChecker):
         for (arg, normalType) in arg_types.items():
             if not isinstance(args[arg], normalType[0]):
-                exec(normalType[1], {"ValueError": ValueError, "arg": arg})
+                exec(normalType[1], {"ValueError": ValueError, "arg": args[arg]})
         return True
 
 
@@ -56,6 +56,3 @@ class Armor(Item):
         if super().check_args({"defence": defence, "name": name}, self.arg_types):
             self._defence = defence
             self._name = name
-
-
-Weapon([1, 2], "stuka")
